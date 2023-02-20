@@ -1,0 +1,56 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package J05065;
+
+import java.util.*;
+
+/**
+ *
+ * @author Admin
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        NhanVien.m.put("GD", new ArrayList<>());
+        NhanVien.m.put("TP", new ArrayList<>());
+        NhanVien.m.put("PP", new ArrayList<>());
+        NhanVien.m.put("NV", new ArrayList<>());
+        while(n-- > 0) {
+            String data = sc.nextLine();
+            if(data.substring(0, 2).equals("GD") && NhanVien.m.get("GD").size() < 1) {
+                NhanVien.m.get("GD").add(new NhanVien(data));
+            }else if(data.substring(0, 2).equals("TP") && NhanVien.m.get("TP").size() < 3) {
+                NhanVien.m.get("TP").add(new NhanVien(data));
+            }else if(data.substring(0, 2).equals("PP") && NhanVien.m.get("PP").size() < 3) {
+                NhanVien.m.get("PP").add(new NhanVien(data));
+            }else {
+                NhanVien nv = new NhanVien(data);
+                nv.setChucVu("NV");
+                NhanVien.m.get("NV").add(nv);
+            }
+        }
+        int m = Integer.parseInt(sc.nextLine());
+        while(m-- > 0) {
+            String q = sc.nextLine();
+            Collections.sort(NhanVien.m.get(q));
+            for(NhanVien nv : NhanVien.m.get(q)) {
+                System.out.println(nv);
+            }
+            System.out.println();
+        }
+    }
+}
+
+//6
+//GD08001 Nguyen Kim Loan
+//TP05002 Hoang Thanh Tuan
+//TP05001 Tran Binh Nguyen
+//PP06002 Phan Trung Tuan
+//PP06001 Tran Quoc Huy
+//NV04003 Vo Van Lan
+//2
+//TP
+//PP
